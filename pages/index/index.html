@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <title><%- HEAD_TITLE %></title>
+    <link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+    <link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/index/index.css">
+</head>
+<body>
+    <div id="header">
+        <div>
+            <img class="logo" src="<%- staticBase %>/images/logo.png" width="44" height="49" alt="LOGO">
+            <div class="banner">北京法院 ｜ 大数据综合展现平台</div>
+        </div>
+        <ul class="nav">
+            <li class="active"><a href="/fy/pages/index/">首页</a></li>
+            <li class="hide"><a href="">基础数据库</a></li>
+            <li><a href="/fy/pages/site_manager/?userType=0">数据专题</a></li>
+            <li class="hide"><a href="">信息简报</a></li>
+        </ul>
+
+        <div id="user">
+
+            <span class="user-name">请登录</span>
+            <span id="user-arrow"></span>
+            <ul id="user-menu">
+               <li id="logout">注销</li>
+            </ul>
+        </div>
+    </div>
+    <div id="index-container">
+        <div id="slider-container">
+            <ul class="bxslider">
+                <li><img src="<%- staticBase %>/images/index/slide1.jpeg" /></li>
+                <li><img src="<%- staticBase %>/images/index/slide2.jpeg" /></li>
+                <li><img src="<%- staticBase %>/images/index/slide3.jpeg" /></li>
+                <li><img src="<%- staticBase %>/images/index/slide4.jpeg" /></li>
+            </ul>
+        </div>
+        <div class="create-area">
+            <a href="/fy/pages/create_site/?ouId=1" class="create-subject">创建专题</a>
+            <a href="/fy/pages/create_site/?ouId=1" class="create-report">创建简报</a>
+        </div>
+        <div class="recent-open-area">
+            <div class="recent-open-title">最近打开</div>
+            <div id="j-rencent-list" class="clear"></div>
+            <div class="clear"></div>
+        </div>
+    </div>
+   
+    <script src="<%- LIB_JQUERY %>"></script>
+     <script src="<%- staticBase %>/js/common/login.js"></script>
+    <script src="<%- LIB_SLIDER %>"></script>
+    <script src="<%- LIB_SEAJS %>"></script>
+    <script src="<%- LIB_SEAJS_TEXT %>"></script>
+<script>
+seajs.config({
+    base : "<%- staticBase %>",
+    alias : {
+        tool : "js/lib/tool"
+    },
+    preload : ["tool"]
+})
+
+seajs.use(["js/index/index"],function(Index) {
+        Index.init();
+    }
+);
+</script>
+
+</body>
+</html>

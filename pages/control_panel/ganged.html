@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <title><%- HEAD_TITLE %></title>
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.mCustomScrollbar.css">
+    <link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+    <link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.bxslider.css">
+    <link href="<%- staticBase %>/css/common/pack.css" type="text/css" rel="stylesheet">
+    <link href="<%- staticBase %>/css/common/pack-chart.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/preview/index.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/popup/popup.css">
+    <link href="<%- staticBase %>/css/control_panel/table_style.css" type="text/css" rel="stylesheet">
+    <link href="<%- staticBase %>/css/control_panel/ganged.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div class="edit_ganged">
+		<div  class="gangedTL left">
+			<div class="left" ><span>联动设置</span><span title="返回" class="ganged1 gangedImg">&nbsp; </span></div>
+			<div class="line_show left"></div>
+			<div class="left">
+				<span class="ganged2 gangedImg">&nbsp;</span>  
+				<input  type="tel" value="100%" min="0.0">  
+				<span class="ganged3 gangedImg">&nbsp;</span>
+			</div>
+			<div class="line_show left"></div>
+			<div class="left">
+				<span class="left">关联客体条件</span>
+				<div class="ganged_condition left">
+					<span class="w125">获取关联条件</span>
+					<span  class="ganged4">&nbsp;</span>
+					<ul class="condition">
+						
+					</ul>
+				</div>
+				
+			</div>
+			
+			 
+		</div>
+		<div class="gangedTR right">
+			<div class="left weidu_ganged" data-num="0">设置维度联动</div>
+			<div class="left details_ganged">联动详情</div>
+			<div class="left sure_ganged">确定</div>
+		</div>
+	</div>
+	
+    <div id="wrapper">
+        <div id="header" style="display:none;">
+            <div class="header-main">
+                <img class="logo" alt="logo" style="display: none">
+                <div class="banner">
+                    <span class="header-name"></span><span class="header-subname" style="display: none;"></span>
+                </div>
+            </div>
+        </div>
+        <div id="test">
+	        <div id="nav"></div>
+		        <div class="cntTem">
+			        <div id="sidebar">
+			            <div class="open-select-popup">统计期筛选<span>></span></div>
+			            <div class="open-dept-popup">机构筛选<span>></span></div>
+			            <ul id="page-scroll-to"></ul>
+			        </div>
+		        
+		        <div id="container">
+		            <div class="box"></div>
+		        </div>
+	        </div>
+        </div>
+        <div id="footer" style="display: none;"></div>
+    </div>
+
+
+
+
+
+
+
+    <script src="<%- LIB_JQUERY %>"></script>
+    <script src="<%- LIB_SEAJS %>"></script>
+    <script src="<%- LIB_SEAJS_TEXT %>"></script>
+    <script src="<%- LIB_SLIDER %>"></script>
+    <script src="<%- staticBase %>/js/lib/echarts.js"></script>
+    <script src="<%- staticBase %>/js/lib/jquery.dataTables.min.js"></script>
+	 <script src="/fy/js/lib/jquery.mCustomScrollbar.js"></script>
+<script>
+seajs.config({
+    base : "<%- staticBase %>",
+    alias : {
+        tool : "js/lib/tool"
+    },
+    preload : ["tool"]
+})
+
+seajs.use(["js/preview/index", "js/control_panel/ganged"],function(Preview,ganged) {
+		window.Preview = Preview;		
+        window.Preview.init();
+        ganged.init()
+    }
+);
+
+</script>
+
+</body>
+</html>

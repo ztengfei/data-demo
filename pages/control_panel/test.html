@@ -1,0 +1,151 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+<link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/common/pack.css" type="text/css" rel="stylesheet">
+<style>
+body{
+    background-color:#333;
+    padding:20px;
+}
+._pack_text_pro{
+    top:0;
+    left:300px;
+    display:block
+}
+</style>
+</head>
+
+<body>
+
+<div class="_pack_text"><!--创建的时候 不带最外围 下边的编辑也是一样-->
+    <textarea placeholder="点击，输入文字"></textarea>
+    <em class="_pack_text_top_left">&nbsp;</em>
+    <em class="_pack_text_top_center">&nbsp;</em>
+    <em class="_pack_text_top_right">&nbsp;</em>
+    
+    <em class="_pack_text_bottom_left">&nbsp;</em>
+    <em class="_pack_text_bottom_center">&nbsp;</em>
+    <em class="_pack_text_bottom_right">&nbsp;</em>
+    
+    <em class="_pack_text_center_center">&nbsp;</em>
+</div>
+
+<div class="_pack_text_pro">
+    <div class="_pack_text_pro_line" data-edit-pro="width"><!--编辑的属性为width-->
+        <h5>宽</h5>
+        
+        <div class="_pack_pro_edit_sub">-</div>
+        <input class="_pack_pro_edit_input _pack_pro_edit_input_by_width" disabled value="200">
+        <div class="_pack_pro_edit_add">+</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="height">
+        <h5>高</h5>
+        
+        <div class="_pack_pro_edit_sub">-</div>
+        <input class="_pack_pro_edit_input _pack_pro_edit_input_by_height" disabled value="100">
+        <div class="_pack_pro_edit_add">+</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="rota">
+        <h5>旋转角度</h5>
+        
+        <div class="_pack_pro_edit_sub">-</div>
+        <input class="_pack_pro_edit_input _pack_pro_edit_input_by_rota" disabled value="0">
+        <div class="_pack_pro_edit_add">+</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="borderWidth">
+        <h5>边框宽度</h5>
+        
+        <div class="_pack_pro_edit_sub">-</div>
+        <input class="_pack_pro_edit_input _pack_pro_edit_input_by_borderWidth" disabled value="0">
+        <div class="_pack_pro_edit_add">+</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="borderColor">
+        <h5>边框颜色</h5>
+        <div class="_pack_select_color _pack_pro_edit_input_by_borderColor" data-color="">&nbsp;</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="borderStyle">
+        <h5>边框样式</h5>
+        
+        <select class="_pack_drop_select _pack_pro_edit_input_by_borderStyle">
+            <option selected value="0">无</option>
+            <option value="1">直线</option>
+            <option value="2">虚线</option>
+        </select>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="backgroundColor">
+        <h5>背景色</h5>
+        <div class="_pack_select_color _pack_pro_edit_input_by_backgroundColor" data-color="">&nbsp;</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="fontSize">
+        <h5>文字大小</h5>
+        
+        <div class="_pack_pro_edit_sub">-</div>
+        <input class="_pack_pro_edit_input _pack_pro_edit_input_by_fontSize" disabled value="14">
+        <div class="_pack_pro_edit_add">+</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="color">
+        <h5>文字颜色</h5>
+        <div class="_pack_select_color _pack_pro_edit_input_by_color" data-color="">&nbsp;</div>
+    </div>
+    
+    <ul class="_pack_text_align_ul" data-pro="left"><!--单选-->
+        <li class="_pack_text_align_left current_selected" data-pro="left">左对齐</li>
+        <li class="_pack_text_align_center" data-pro="center">居中对齐</li>
+        <li class="_pack_text_align_right" data-pro="right">右对齐</li>
+    </ul>
+    
+    <ul class="_pack_text_style_ul" data-pro="none"><!--多选-->
+        <li class="_pack_text_style_bold" data-pro="bold">加粗</li>
+        <li class="_pack_text_style_italic" data-pro="italic">斜体</li>
+        <li class="_pack_text_style_underline" data-pro="underline">下划线</li>
+    </ul>
+    <div class="clear"></div>
+    
+    <p class="_pack_set_text_link">设置超链接</p>
+</div>
+
+<script src="<%- LIB_JQUERY %>"></script>
+<script src="<%- staticBase %>/js/lib/jquery.colorpicker.js"></script>
+<script>
+$("._pack_select_color").colorpicker({
+    fillcolor:true,
+    success:function(o,color){
+        $(o).attr("data-color",color).css("background-color",color);
+    }
+});
+
+$("._pack_text_align_ul li").bind("click",function(){
+    var _this = $(this);
+    if(_this.hasClass("current_selected")){
+        return;
+    }
+    
+    _this.parent().find(".current_selected").eq(0).removeClass("current_selected");
+    _this.addClass("current_selected");
+    _this.parent().attr("data-pro",_this.attr("data-pro"));
+})
+
+$("._pack_text_style_ul li").bind("click",function(){
+    var _this = $(this);
+    if(_this.hasClass("current_selected")){
+        _this.removeClass("current_selected");
+    }
+    else{
+        _this.addClass("current_selected");
+    }
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <title><%- HEAD_TITLE %></title>
+    <link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+    <link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.bxslider.css">
+    <link href="<%- staticBase %>/css/common/pack.css" type="text/css" rel="stylesheet">
+    <link href="<%- staticBase %>/css/common/pack-chart.css" type="text/css" rel="stylesheet">
+    <link href="<%- staticBase %>/css/common/userAnimation.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/preview/index.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/popup/popup.css">
+    <link href="<%- staticBase %>/css/control_panel/table_style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/swiper.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/animate.css">
+   <link href="<%- staticBase %>/css/preview/animation.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+	<div class="stars bg1"></div>
+	<div class="stars bg2"></div>
+	<div class="stars bg3"></div>
+    <div id="wrapper">
+        <div class="header">
+            <div class="headerioc">
+            </div>
+            <div class="headerline">
+            	 <div class="line2">
+           		 </div>
+            </div>
+
+        </div>
+        <div id="nav"></div>
+
+        <div class="cntTem swiper-container">	       
+	        <div id="sidebar">
+	            <div class="open-select-popup">统计期筛选</div>
+	            <div class="open-dept-popup">机构筛选</div>
+	            <ul id="page-scroll-to"></ul>
+	        </div>
+	        <!--<div class="swiper-container">-->
+        	<!--<div class="swiper-wrapper">-->
+    		<div id="container" class="swiper-slide">
+	            <div class="box">swiper-container</div>
+	        </div>
+        	<!--</div>-->
+	        <!--</div>-->
+	        <!--<div id="container" class="swiper-slide">
+	            <div class="box">swiper-container</div>
+	        </div>-->
+	        <div class="banner">
+		        <div class="swiper-wrapper">
+		            <!--<div class="swiper-slide" data-value="1" style="background-image:url(/fy/images/preview/01.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="2" style="background-image:url(/fy/images/preview/02.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="12" style="background-image:url(/fy/images/preview/03.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="29" style="background-image:url(/fy/images/preview/04.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="22" style="background-image:url(/fy/images/preview/05.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="30" style="background-image:url(/fy/images/preview/06.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="7" style="background-image:url(/fy/images/preview/07.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="13" style="background-image:url(/fy/images/preview/08.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="15" style="background-image:url(/fy/images/preview/09.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="6" style="background-image:url(/fy/images/preview/10.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="16" style="background-image:url(/fy/images/preview/11.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="5" style="background-image:url(/fy/images/preview/12.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="3" style="background-image:url(/fy/images/preview/13.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="8" style="background-image:url(/fy/images/preview/14.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="18" style="background-image:url(/fy/images/preview/15.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="10" style="background-image:url(/fy/images/preview/16.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="17" style="background-image:url(/fy/images/preview/17.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="9" style="background-image:url(/fy/images/preview/18.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="20" style="background-image:url(/fy/images/preview/19.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="19" style="background-image:url(/fy/images/preview/20.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="21" style="background-image:url(/fy/images/preview/21.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="11" style="background-image:url(/fy/images/preview/22.png); background-size: 100% 100%;"></div>
+		            <div class="swiper-slide" data-value="23" style="background-image:url(/fy/images/preview/23.png); background-size: 100% 100%;"></div>-->
+		        	<div class="swiper-slide" data-value="1">
+		        		<img src="/fy/images/preview/01.png"/>		      		
+		        	</div> 
+		        	<div class="swiper-slide" data-value="2">
+		        		<img src="/fy/images/preview/02.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="12">
+		        		<img src="/fy/images/preview/03.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="29">
+		        		<img src="/fy/images/preview/04.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="22">
+		        		<img src="/fy/images/preview/05.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="30">
+		        		<img src="/fy/images/preview/06.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="7">
+		        		<img src="/fy/images/preview/07.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="13">
+		        		<img src="/fy/images/preview/08.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="15">
+		        		<img src="/fy/images/preview/09.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="6">
+		        		<img src="/fy/images/preview/10.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="16">
+		        		<img src="/fy/images/preview/11.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="5">
+		        		<img src="/fy/images/preview/12.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="3">
+		        		<img src="/fy/images/preview/13.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="8">
+		        		<img src="/fy/images/preview/14.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="18">
+		        		<img src="/fy/images/preview/15.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="10">
+		        		<img src="/fy/images/preview/16.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="17">
+		        		<img src="/fy/images/preview/17.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="9">
+		        		<img src="/fy/images/preview/18.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="20">
+		        		<img src="/fy/images/preview/19.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="19">
+		        		<img src="/fy/images/preview/20.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="21">
+		        		<img src="/fy/images/preview/21.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="11">
+		        		<img src="/fy/images/preview/22.png"/>		      		
+		        	</div>
+		        	<div class="swiper-slide" data-value="23">
+		        		<img src="/fy/images/preview/23.png"/>		      		
+		        	</div>
+		        	
+		        </div>        
+		    </div>
+		    <!-- 返回按钮   -->
+	        <div class="switchPage">
+		        <div class="compass hide w h">		        	
+		            <div class="compass-4 w h bs"></div>
+		            <div class="compass-5 w h bs"></div>
+		            <div class="compass-6 w h bs"></div>
+		            <div class="compass-7 w h bs"></div>
+		        </div>				   
+	        </div>
+	        <div class="bottomImgBox">
+	        	<div class="bottomImg">
+	        		
+	        	</div>
+	        </div>
+	    </div>    
+        
+        <div id="footer" style="display: none;"></div>
+       
+        
+    </div>
+    <script src="<%- LIB_JQUERY %>"></script>
+    <script src="<%- LIB_SEAJS %>"></script>
+    <script src="<%- LIB_SEAJS_TEXT %>"></script>
+    <script src="<%- LIB_SLIDER %>"></script>
+    <script src="<%- staticBase %>/js/lib/echarts.js"></script>
+    <script src="<%- staticBase %>/js/lib/swiper.js"></script>
+    <script src="<%- staticBase %>/js/lib/swiper.animate1.0.2.min.js"></script>
+    <script src="<%- staticBase %>/js/lib/jquery.dataTables.min.js"></script>
+    <script src="<%- staticBase %>/js/lib/jquery.mCustomScrollbar.js"></script>
+    <script type="text/javascript" src="<%- staticBase %>/js/preview/common.js?v=2014022801"></script>
+	<script type="text/javascript" src="<%- staticBase %>/js/lib/draggabilly.pkgd.js"></script>
+	<script>
+	
+
+	seajs.config({
+	    base : "<%- staticBase %>",
+	    alias : {
+	        tool : "js/lib/tool"
+	    },
+	    preload : ["tool"]
+	})
+	
+	seajs.use(["js/preview/index","js/preview/ganged"],function(Preview,ganged) {
+			window.Preview = Preview;		
+	        window.Preview.init();     
+	        //ganged.init();
+	    }
+	);
+	var tagNum = null;
+	var tagNum2 = null
+	var swiper = new Swiper('.banner', {
+        pagination: '.swiper-pagination',
+        effect: 'coverflow',
+        grabCursor: true,
+        loop : true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        coverflow: {
+            rotate:  0,  //40,   // 旋转角度 默认 50
+            stretch: 0,   // slide 之间的拉伸距离，默认0 越大越紧
+            depth:  200,  //20,    //  越大距离z轴越远
+            modifier: 3,  //  上面参数放大的倍率，越大效果越明显
+            slideShadows : true   // 开启阴影
+        },
+        onInit: function(swiper){
+		      //Swiper初始化了
+	      console.info(swiper.activeIndex);
+	      $(".banner").find(".swiper-slide").css({"opacity" : 0})
+	       var target =  $(".banner").find(".swiper-slide").eq(swiper.activeIndex);	       
+	       target.css({"opacity" : 1});
+	       
+	       var targetNex = target.next();	       
+	       targetNex.css({"opacity" : 0.8})
+	       
+	       targetNex.next().css({"opacity" : 0.4})
+	       
+	       target.prev().css({"opacity" : 0.8})
+	       target.prev().prev().css({"opacity" : 0.4})
+	    },
+		
+		onTouchStart: function(swiper,even){		   
+		   setbannnerStyle(swiper);
+		   tagNum = swiper.activeIndex
+	   },		
+		onTouchMove: function(swiper){
+	       setbannnerStyle(swiper)
+	   },		
+		onTouchEnd: function(swiper){
+			setbannnerStyle(swiper);
+			tagNum2 = swiper.activeIndex
+			if(tagNum != swiper.activeIndex) {
+				var tarEl = $(".swiper-slide-active");
+		   		if(window.Preview) {
+		   			Preview.globalConditionFilter = []
+			        Preview.globalConditionFilter[0] = {
+			        	ZbColumnCode : "dimjbfy0_",
+			        	data : [tarEl.attr("data-value")],
+			        	itemName : ["当前法院"],
+			        }
+			        Preview.switchPage(Preview.currentPageId)
+				}
+	   		}
+	   },
+	   onSlideChangeStart: function(swiper){
+	   	//onSlideChangeEnd
+	   		setbannnerStyle(swiper);
+	   		if(tagNum != swiper.activeIndex) {
+	   			var tarEl = $(".swiper-slide-active");
+		   		if(window.Preview) {
+		   			Preview.globalConditionFilter = []
+			        Preview.globalConditionFilter[0] = {
+			        	ZbColumnCode : "dimjbfy0_",
+			        	data : [tarEl.attr("data-value")],
+			        	itemName : ["当前法院"],
+			        }
+			        Preview.switchPage(Preview.currentPageId)
+		   		}	   			
+	   		}	   		
+	   }
+    });
+	function setbannnerStyle(swiper) {
+		$(".banner").find(".swiper-slide").css({"opacity" : 0})
+       var target =  $(".banner").find(".swiper-slide").eq(swiper.activeIndex);	       
+       target.css({"opacity" : 1});		       
+       var targetNex = target.next();	       
+       targetNex.css({"opacity" : 0.8})		       
+       targetNex.next().css({"opacity" : 0.4})		       
+       target.prev().css({"opacity" : 0.8})
+       target.prev().prev().css({"opacity" : 0.4})
+	}	
+	
+	/*window.onload = function(){
+		debugger
+		
+		var mySwiper = new Swiper ('.swiperContainer', {
+		    onInit: function(swiper){ //Swiper2.x的初始化是onFirstInit
+		    	debugger
+		        swiperAnimateCache(swiper); //隐藏动画元素 
+		        swiperAnimate(swiper); //初始化完成开始动画
+		    }, 
+		    onSlideChangeEnd: function(swiper){ 
+		    	swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+		    } 
+    	})  
+	}*/
+	// 整屏切换动画
+	/*$(".swiper-slide").addClass("box_animation")
+	$(".ani").each(function(){
+		var num = $(this).index()*0.2 + 0.2 + "s";
+		var _this = this
+		$(_this).removeClass("flipInX").attr({"swiper-animate-effect": "flipOutX", "swiper-animate-delay": num}).addClass('flipOutX').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+	      //$(this).removeClass();
+	    });
+	  
+		
+	})
+	$(".divKey").addClass("keyDivAni");*/
+	
+
+		
+	
+		
+	</script>
+
+
+</body>
+</html>

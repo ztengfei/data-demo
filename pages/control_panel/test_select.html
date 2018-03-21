@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+</head>
+ 
+<body>
+ 
+ 
+ 
+<script   type="text/javascript">   
+function setCaret(textObj) {
+    if (textObj.createTextRange) {
+        textObj.caretPos = document.selection.createRange().duplicate();
+    }
+}
+function insertAtCaret(textObj, textFeildValue) {
+    if (document.all) {
+        if (textObj.createTextRange && textObj.caretPos) {
+            var caretPos = textObj.caretPos;
+            caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == '   ' ? textFeildValue + '   ' : textFeildValue;
+        } else {
+            textObj.value = textFeildValue;
+        }
+    } else {
+        if (textObj.setSelectionRange) {
+            var rangeStart = textObj.selectionStart;
+            var rangeEnd = textObj.selectionEnd;
+            var tempStr1 = textObj.value.substring(0, rangeStart);
+            var tempStr2 = textObj.value.substring(rangeEnd);
+            textObj.value = tempStr1 + textFeildValue + tempStr2;
+        } else {
+            alert("This   version   of   Mozilla   based   browser   does   not   support   setSelectionRange");
+        }
+    }
+}   
+ </script>  
+    
+<form id="form1" method="post" enctype="text/plain">    
+    <textarea name="tarea" style="width:300px;height:120px;" onselect="setCaret(this);" onclick="setCaret(this);" onkeyup="setCaret(this);">例子</textarea>  
+    <br/>
+    <input type="text" name="textfield" style="width:220px;" value="插入FireFox"/>  
+    <br/>
+    <input type="button" value="插入" onclick="insertAtCaret(this.form.tarea,this.form.textfield.value);"/>  
+</form>   
+</body>
+</html>

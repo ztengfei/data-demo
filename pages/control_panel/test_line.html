@@ -1,0 +1,104 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+<link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/common/pack.css" type="text/css" rel="stylesheet">
+<style>
+body{
+    background-color:#333;
+    padding:20px;
+}
+._pack_text_pro{
+    top:0;
+    left:300px;
+    display:block
+}
+</style>
+</head>
+
+<body>
+
+<div class="_pack_line _pack_objs"><!--创建的时候 不带最外围 下边的编辑也是一样-->
+    <div class="">&nbsp;</div>
+
+    <!--线段只有左边 右边 和 中间小框-->
+    <em class="_pack_side_area_control_x _pack_text_top_left">&nbsp;</em><em class="_pack_side_area_control_x _pack_text_top_right">&nbsp;</em><em class="_pack_text_center_center">&nbsp;</em>
+</div>
+
+<div class="_pack_line_pro">
+    <div class="_pack_text_pro_line" data-edit-pro="width"><!--编辑的属性为width-->
+        <h5>线段长度</h5>
+        
+        <div class="_pack_pro_edit_sub">-</div>
+        <input class="_pack_pro_edit_input _pack_pro_edit_input_by_width" disabled value="200">
+        <div class="_pack_pro_edit_add">+</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="rota">
+        <h5>旋转角度</h5>
+        
+        <div class="_pack_pro_edit_sub">-</div>
+        <input class="_pack_pro_edit_input _pack_pro_edit_input_by_rota" disabled value="0">
+        <div class="_pack_pro_edit_add">+</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="borderWidth">
+        <h5>线段粗细</h5>
+        
+        <div class="_pack_pro_edit_sub">-</div>
+        <input class="_pack_pro_edit_input _pack_pro_edit_input_by_borderWidth" disabled value="0">
+        <div class="_pack_pro_edit_add">+</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="borderColor">
+        <h5>线段颜色</h5>
+        <div class="_pack_select_color _pack_pro_edit_input_by_borderColor" data-color="">&nbsp;</div>
+    </div>
+    
+    <div class="_pack_text_pro_line" data-edit-pro="borderStyle">
+        <h5>线段样式</h5>
+        
+        <select class="_pack_drop_select _pack_pro_edit_input_by_borderStyle">
+            <option selected value="0">无</option>
+            <option value="1">直线</option>
+            <option value="2">虚线</option>
+        </select>
+    </div>
+</div>
+
+<script src="<%- LIB_JQUERY %>"></script>
+<script src="<%- staticBase %>/js/lib/jquery.colorpicker.js"></script>
+<script>
+$("._pack_select_color").colorpicker({
+    fillcolor:true,
+    success:function(o,color){
+        $(o).attr("data-color",color).css("background-color",color);
+    }
+});
+
+$("._pack_text_align_ul li").bind("click",function(){
+    var _this = $(this);
+    if(_this.hasClass("current_selected")){
+        return;
+    }
+    
+    _this.parent().find(".current_selected").eq(0).removeClass("current_selected");
+    _this.addClass("current_selected");
+    _this.parent().attr("data-pro",_this.attr("data-pro"));
+})
+
+$("._pack_text_style_ul li").bind("click",function(){
+    var _this = $(this);
+    if(_this.hasClass("current_selected")){
+        _this.removeClass("current_selected");
+    }
+    else{
+        _this.addClass("current_selected");
+    }
+})
+</script>
+</body>
+</html>

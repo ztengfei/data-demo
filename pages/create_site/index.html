@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <title><%- HEAD_TITLE %></title>
+    <link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+    <link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/create_site/index.css">
+    <link href="<%- staticBase %>/css/popup/popup.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+<!--
+    cs = create_site 缩写
+-->
+  <div id="cs-wrapper">
+    <h1 class="cs-title">请选择一个模版</h1>
+    <ul class="cs-navi">
+        <li data-id="0" class="active">全部模板</li>
+        <li data-id="1">数据专题</li>
+        <li data-id="2">智汇云</li>
+        <li class="" data-id="3">移动端</li>
+    </ul>
+    <div class="cs-templates"></div>
+  </div>
+  <div class="cs-popup">
+      <h3 class="popup-title">请为专题设定一个名称</h3>
+      <div><input type="" name="" id="cs-template-name"></div>
+      <div class="popup-btn-create">创建</div>
+      <div class="popup-btn-cancel">取消</div>
+  </div>
+  <script src="<%- LIB_JQUERY %>"></script>
+  <script src="<%- LIB_SEAJS %>"></script>
+<script>
+seajs.config({
+    base : "<%- staticBase %>",
+    alias : {
+        tool : "js/lib/tool",
+        utils: "js/lib/utils"
+    },
+    preload : ["tool"]
+})
+
+seajs.use(["js/create_site/index"],function(CreateSite) {
+        CreateSite.init();
+    }
+);
+</script>
+
+</body>
+</html>

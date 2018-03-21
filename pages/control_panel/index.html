@@ -1,0 +1,477 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title><%- HEAD_TITLE %></title>
+<link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.mCustomScrollbar.css">
+<link href="<%- staticBase %>/css/control_panel/index.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/common/pack.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/common/pack-chart.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/popup/popup.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/control_panel/welcome.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/control_panel/data_pack_son.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/control_panel/table_style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+<!--
+id命名解释
+    cp ＝ control_panel 缩写
+    mid ＝ 中间部分 middle缩写
+    mid_l = 中间靠左部分
+    mid_r = 中间靠右部分
+    mid_m = 中间区域的中间部分 也就是画布区域
+
+    cp_hd_li_icon_{a-z}用于表示顶部的菜单项，id更便于jquery绑定事件 及 定制css样式
+    直接绑定顶部区域的li标签 根据data-action来处理事件
+-->
+
+<header id="cp_hd" class="rel">
+    <h2 data-action="site_name">加载中...</h2>
+
+    <!-- 工具栏 -->
+    <ul id="cp_hd_ul" class="abs">
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_back" data-action="back" title="返回">返回</li>
+        <li class="cp_hd_li_line">&nbsp;</li>
+
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_a" data-action="exchange_layout" title="切换布局">切换布局</li>
+        <li class="cp_hd_li_line">&nbsp;</li>
+
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_b" data-action="save" title="保存">保存</li>
+        <li class="cp_hd_li_line">&nbsp;</li>
+
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_c" data-action="cut" title="剪切">剪切</li>
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_d" data-action="copy" title="复制">复制</li>
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_e" data-action="paste" title="粘贴">粘贴</li>
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_f" data-action="del" title="删除">删除</li>
+        <li class="cp_hd_li_line">&nbsp;</li>
+
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_g" data-action="big" title="放大">放大</li>
+        <li><input id="cp_hd_li_scale_input" type="text" value="100%"></li>
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_h" data-action="small" title="缩小">缩小</li>
+        <li class="cp_hd_li_line">&nbsp;</li>
+
+        <li data-action="page_hd" class="page_hd">页头
+            <div class="page_hd_dropdown_xxxx hide">
+                <div class="cp_page_dropdown_item">规格一</div>
+                <div class="cp_page_dropdown_item">规格二</div>
+                <div class="cp_page_dropdown_item">隐藏</div>
+            </div>
+        </li>
+        <li data-action="page_ft" class="page_ft">页脚
+            <div class="page_ft_dropdown_xxxx hide">
+                <div class="cp_page_dropdown_item">隐藏</div>
+            </div>
+        </li>
+        <li data-action="page_style" class="page_style">风格</li>
+        
+		<li data-action="ganged" class="ganged">联动</li>
+		
+        <li class="cp_hd_li_line">&nbsp;</li>
+        <li data-action="global_filter" class="page_filter">全局筛选</li>
+        <li data-action="magnifier" class="">放大镜</li>
+    </ul>
+
+    <ul id="cp_hd_right_ul" class="abs">
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_i" data-action="preview">预览</li>
+        <li class="cp_hd_li_icon" id="cp_hd_li_icon_j" data-action="submit">提交发布</li>
+    </ul>
+</header>
+
+<!--
+id命名解释
+    pack_btn_ul ＝ 组件选择按钮列表
+    current_pack_btn_li ＝ 当前已经选择的组件列表 根据这个来显示对应的组件detail
+
+    pack_detail_ul_by_normal ＝ 普通组件
+    pack_detail_ul_by_data ＝ 数据组建图表等
+
+    pack_drag 表示当前控件可以拖动
+-->
+<section id="cp_mid" class="rel hide">
+    <div id="mid_l" class="abs">
+        <div id="mid_l_inner">
+            <ul class="pack_btn_ul">
+                <li class="current_pack_btn_li">普通组件</li>
+                <li>图表组件</li>
+            </ul>
+
+            <div class="clear"></div>
+
+            <!--上边的控件的标题按钮 下边都是控件的具体例子 比如矩形 图片 轮播。。。都可以拖动进中间画布-->
+            <ul class="pack_detail_ul" id="pack_detail_ul_by_normal">
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_k"><span>&nbsp;</span>文字
+                    <div class="pack_drag abs" data-pack-type="text"><span>&nbsp;</span>文字</div>
+                </li>
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_l"><span>&nbsp;</span>矩形
+                    <div class="pack_drag abs" data-pack-type="rect"><span>&nbsp;</span>矩形</div>
+                </li>
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_m"><span>&nbsp;</span>线段
+                    <div class="pack_drag abs" data-pack-type="line"><span>&nbsp;</span>线段</div>
+                </li>
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_n"><span>&nbsp;</span>视频
+                    <div class="pack_drag abs" data-pack-type="video"><span>&nbsp;</span>视频</div>
+                </li>
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_o"><span>&nbsp;</span>图片
+                    <div class="pack_drag abs" data-pack-type="image"><span>&nbsp;</span>图片</div>
+                </li>
+                <div class="clear"></div>
+
+                <li class="pack_detail_li_title">&nbsp;</li>
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_p"><span>&nbsp;</span>轮播图
+                    <div class="pack_drag abs" data-pack-type="scroll_image"><span>&nbsp;</span>轮播图</div>
+                </li>
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_q"><span>&nbsp;</span>锚点
+                    <div class="pack_drag abs" data-pack-type="scroll_to"><span>&nbsp;</span>锚点</div>
+                </li>
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_r"><span>&nbsp;</span>外链地址
+                    <div class="pack_drag abs" data-pack-type="iframe"><span>&nbsp;</span>外链地址</div>
+                </li>
+                <li class="clear"></li>
+               
+            </ul>
+
+            <ul class="pack_detail_ul hide" id="pack_detail_ul_by_data">
+                <li class="pack_detail_li_title"><span>基础图表</span></li>
+                <!--下拉增加class data_pack_has_son 及 data-type="bar" 用来标示 是什么类型的图表-->
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="bar" id="pack_detail_li_icon_a"><span>&nbsp;</span>柱状图</li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="row" id="pack_detail_li_icon_b"><span>&nbsp;</span>条形图</li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="pie" id="pack_detail_li_icon_c"><span>&nbsp;</span>饼图</li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="foldline" id="pack_detail_li_icon_d"><span>&nbsp;</span>折线图</li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="dot" id="pack_detail_li_icon_e"><span>&nbsp;</span>散点图</li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="table" id="pack_detail_li_icon_f"><span>&nbsp;</span>表格
+                </li>
+                <li class="pack_detail_li_icon" id="pack_detail_li_icon_g"><span>&nbsp;</span>长文本
+                    <div class="pack_drag abs" data-pack-type="long_text"><span>&nbsp;</span>长文本</div>
+                </li>
+                <li class="clear"></li>
+
+                <li class="pack_detail_li_title"><span>其他图表</span></li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="meter" id="pack_detail_li_icon_h"><span>&nbsp;</span>仪表</li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="radar" id="pack_detail_li_icon_i"><span>&nbsp;</span>雷达图</li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="funnel" id="pack_detail_li_icon_s"><span>&nbsp;</span>漏斗图</li>
+                <li class="pack_detail_li_icon data_pack_has_son" data-type="map" id="pack_detail_li_icon_t"><span>&nbsp;</span>地图</li>
+                <li class="clear"></li>
+            </ul>
+
+        </div>
+        <!--is_showed表示当前是否已经显示 如果有这个class 则点击的时候是收起动作，反之亦然-->
+        <mark class="show_or_hide_mid_LR_mark_icon" id="show_or_hide_mid_l"><em class="is_showed">&nbsp;</em></mark>
+    </div>
+
+    <!--
+    mid_m_hd 表示 中间区域的顶部
+    mid_m_ft 表示 中间区域的底部
+    mid_m_inner 表示 中间区域的内部区域 也就是主要编辑区
+    -->
+    <div id="mid_m" class="rel">
+        <div id="mid_m_hd" class="abs">
+            <p id="save_time" class="abs"></p>
+            <p id="set_ratio" class="abs"><em class="background_image_by_m_icon">&nbsp;</em>设置分辨率</p>
+        </div>
+
+        <div id="mid_m_inner">
+        	<div class="mid_c_panle">
+	            <div id="mid_m_content" class="over_hidden">
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	            </div>
+            </div>
+        </div>
+
+        <div id="mid_m_ft" class="c_txt">
+            <p id="set_background_color" class="abs background_image_by_m_icon"></p>
+            <span id="set_mid_m_inner_view_height">
+                <em id="set_mid_m_inner_view_height_up">&nbsp;</em>
+                拖动调整页面高度
+                <em id="set_mid_m_inner_view_height_down">&nbsp;</em>
+            </span>
+            <p id="set_background_image" class="abs background_image_by_m_icon"></p>
+        </div>
+    </div>
+
+    <div id="mid_r" class="abs">
+        <div id="mid_r_inner">
+            <ul class="pack_btn_ul">
+                <li class="current_pack_btn_li">目录</li>
+                <li class="pack_btn_database">指标库</li>
+            </ul>
+
+            <div class="clear"></div>
+
+            <!--上边的控件的标题按钮 下边都是控件的具体例子 比如矩形 图片 轮播。。。都可以拖动进中间画布-->
+            <div class="pack_detail_ul" id="pack_detail_ul_by_map">
+                <ul id="pack_detail_ul_by_map_edit">
+                    <li id="pack_detail_ul_by_map_edit_by_add" title="添加">添加</li>
+                    <li id="pack_detail_ul_by_map_edit_by_up" title="上移">上移</li>
+                    <li id="pack_detail_ul_by_map_edit_by_down" title="下移">下移</li>
+                    <li id="pack_detail_ul_by_map_edit_by_right" title="左移">收进</li>
+                    <li id="pack_detail_ul_by_map_edit_by_left" title="右移">外扩</li>
+                    <li id="pack_detail_ul_by_map_edit_by_copy" title="复制">复制</li>
+                    <li id="pack_detail_ul_by_map_edit_by_del" title="删除">删除</li>
+                    <li id="pack_detail_ul_by_map_edit_by_hide" title="隐藏" style = "background-position:0px -270px;">隐藏</li>
+                </ul>
+                <div class="clear"></div>
+
+                <!--
+                树状结构要有几个样式
+                1.默认的
+                2.选中的
+                3.子级
+                4.该层级下边还有页面
+                    未展开 则空心三角
+                    展开 则实心三角
+                5.该层级下边没有页面 则空心三角
+
+                选中样式为current_map_tree
+                em为前边的下三角
+                map_tree_has_son show_son_tree 为配对出现 首先要有map_tree_has_son 如果展开 则 show_son_tree
+                -->
+                <div id="pack_detail_ul_by_map_tree"></div>
+            </div>
+
+            <div class="pack_detail_ul rel hide" id="pack_detail_ul_by_database">
+                <!--
+                    根据data-type来控制需要显示的数据内容 然后在下边的database_contents里显示
+                -->
+                <ul id="database_public_type_change" class="abs">
+                    <li data-type="public" class="current_database_public_type">公共指标</li>
+                    <div class="data_line"></div>
+                    <li data-type="private">自建指标</li>
+                    <div class="data_line"></div>
+                    <li data-type="often">常用指标</li>
+                </ul>
+
+                <div id="database_contents">
+                	<div class="search_son"></div>
+                    <div class="database_contents_search_p rel">
+                    	<div class='database_contents_search_span'>
+	                        <input type="text" id="database_contents_search_a" placeholder="指标项检索定位">
+	                        <em id="sort_database_contents_a" class="abs">排序</em>
+                        </div>
+                    </div>
+					<div class="database_contents_a_ul_pack">
+						 <ul id="database_contents_a_ul">
+                      	<!--<li class="indicator_drag current_database_contents_a_li">案件总数指标A</li>
+                        <li class="indicator_drag">案件总数指标B</li>
+                        <li class="indicator_drag">案件总数指标C</li> -->
+                   		 </ul>
+					</div>
+                   
+
+
+
+
+                    <h5 class="line_through_title"><span>维度</span></h5>
+					<div class="search_son_b"></div>
+                    <div class="database_contents_search_p rel">
+                    	<div class='database_contents_search_span'>
+	                        <input type="text" id="database_contents_search_b" placeholder="指标项检索定位">
+	                        <em id="sort_database_contents_b" class="abs">排序</em>
+	                    </div>    
+                    </div>
+					<div class="database_contents_b_ul_pack">
+						 <ul id="database_contents_b_ul">
+                        <!-- <li class="current_database_contents_b_li">日期</li>
+                        <li>案件类别</li> -->
+                   		 </ul>
+					</div>
+                   
+                </div>
+            </div>
+        </div>
+        <!--is_showed表示当前是否已经显示 如果有这个class 则点击的时候是收起动作，反之亦然-->
+        <mark class="show_or_hide_mid_LR_mark_icon" id="show_or_hide_mid_r"><em class="is_showed">&nbsp;</em></mark>
+    </div>
+
+    <div id="welcome" class="abs hide">
+        <div id="welcome_line_a" class="abs">
+            <p class="abs">组件区：拖动组建区的相关组件至中间编辑区，生成相应的图形工具。</p>
+        </div>
+
+        <div id="welcome_line_b" class="abs">
+            <p class="abs">工具区：提供复制、粘贴、剪切等基础工具和整体设置与发布的操作区。</p>
+        </div>
+
+        <div id="welcome_line_c" class="abs">
+            <p class="abs">目录：导航树编辑器。</p>
+            <mark class="abs t_hide">目录</mark>
+        </div>
+
+        <div id="welcome_line_d" class="abs">
+            <p class="abs">指标库：拖动度量和维度至编辑区的图形属性面板，进行生成可视化图形。</p>
+            <mark class="abs t_hide">指标库</mark>
+        </div>
+
+        <div id="welcome_control" class="abs c_txt">
+            <a id="welcome_i_know" href="##">我知道了</a>
+            <p><label><input type="checkbox" checked id="not_show_welcome">下次不再提示</label></p>
+        </div>
+    </div>
+
+</section>
+
+<footer id="cp_ft"></footer>
+
+<div id="changePageName" class="hide"><!--页面重命名区域-->
+    <div id="changePageNameInner">
+        <input id="changePageNameInput" type="text" maxlength="20" placeholder="请输入页面名字">
+        <a id="changePageNameSubmit">确认</a>
+    </div>
+
+    <div id="changePageNameBg">&nbsp;</div>
+</div>
+
+<div id="changeSiteName" class="hide"><!--站点重命名区域-->
+    <div id="changeSiteNameInner">
+        <input id="changeSiteNameInput" type="text" maxlength="20">  <!---->
+        <a id="changeSiteNameSubmit">确认</a>
+    </div>
+
+    <div id="changePageNameBg">&nbsp;</div>
+</div>
+
+<div id="deploy_wrap" class="hide"><!--发布站点区域-->
+    <div id="deploy_wrap_inner">
+    	<div id="deploy_wrap_inner_first">
+	        <div class="deploy_line">
+	            <span>路径保存</span>
+	            <input id="deploy_path" type="text">
+	        </div>
+	        <div class="deploy_line">
+	            <span>IP地址</span>
+	            <input id="deploy_ip" type="text">
+	        </div>
+	        <div class="deploy_line">
+	            <span>端口号</span>
+	            <input id="deploy_port" type="tel">
+	        </div>
+	
+	        <h3>高级选项</h3>
+	
+	        <div class="rel">
+	            <h4 id="deploy_view_h4">查看权限设置</h4>
+	            <h4 id="deploy_page_h4">发布页面选择</h4>
+	
+	            <div id="deploy_view" class="left">
+	                <div id="deploy_visual">
+	                    <ul id="visual_ul">
+	                    </ul>
+	                </div>
+	            </div>
+	
+	            <div id="deploy_page" class="right">
+	                <div id="deploy_tree"></div>
+	            </div>
+	        </div>
+	        <div class="clear"></div>
+			<div class="subtitle">自定义变量配置</div>
+	        <table id="dimension">
+	            <tr class='selfTr'>
+	                <td style="width: 62px;">变量名</td>
+	                <td><input class="varInput" type="text" name=""></td>
+	                <td style="width: 94px; padding-left: 25px;">所对应网站维度</td>
+	                <td>
+	                	<select class="selfSelect">
+	                		
+	                	</select>
+	                </td>
+	                <td><div class="icon-add"></div></td>
+	            </tr>	            
+	        </table>   
+	    </div>   
+	    <p class="c_txt">
+        	<a id="deploy_submit" href="##">提交发布</a>
+    	</p>
+	</div>	
+    <div id="deploy_wrap_bg">&nbsp;</div>
+</div>
+
+<!--欢迎界面的2个边框-->
+<div id="welcome_hd_border_wrap" class="abs hide">&nbsp;</div>
+<div id="welcome_left_border_wrap" class="abs hide">&nbsp;</div>
+
+<!--图表控件的下拉容器 全局共用一个-->
+<div id="data_pack_son_list" class="abs hide">
+    <!--以下内容js创建-->
+
+    <!--h3 id="data_pack_son_list_h3" class="rel" data-des="该数据控件的总介绍">适用二维，且只需要比较其中一维</h3>
+
+    <ul id="data_pack_son_list_ul">
+
+        <li class="son_list_li left" data-des="具体子项 循环体">
+            <div class="son_list_li_inner rel">
+                <div data-des="这个控件是用来拖动的，拖动的时候动态将透明度调整为1" class="son_list_shadow_img abs"></div>
+                <div class="son_list_des abs c_txt hide" data-des="子项的描述 鼠标hover时显示">
+                    <p>二者范围的比较<br>适用于面积图</p>
+                </div>
+                <img data-des="该子项的缩略图" src="" />
+            </div>
+        </li>
+
+    </ul>
+
+    <div class="clear"></div-->
+</div>
+
+<script src="<%- LIB_JQUERY %>"></script>
+<script src="<%- staticBase %>/js/lib/jquery.mCustomScrollbar.js"></script>
+<script src="<%- staticBase %>/js/lib/jquery.mousewheel.js"></script>
+<script src="<%- staticBase %>/js/lib/draggabilly.pkgd.js"></script>
+<script src="<%- staticBase %>/js/lib/echarts.js"></script>
+<script src="<%- staticBase %>/js/lib/jquery.colorpicker.js"></script>
+<script src="<%- staticBase %>/js/lib/SimpleAjaxUploader.js"></script>
+<script src="<%- staticBase %>/js/lib/jquery.ztree.core.js"></script>
+<script src="<%- LIB_SEAJS %>"></script>
+<script src="<%- LIB_SEAJS_TEXT %>"></script>
+<script src="<%- staticBase %>/js/lib/jquery.dataTables.min.js"></script>
+<script src="<%- staticBase %>/js/common/login.js"></script>
+<script>
+seajs.config({
+	base : "<%- staticBase %>",
+	alias : {
+		tool : "js/lib/tool"
+	},
+	preload : ["tool"]
+})
+
+seajs.use(["js/control_panel/index"],function(Index){
+        window.Index = Index;
+		window.Index.init();
+	}
+);
+window.onbeforeunload = function() {
+		//关闭页面时保存编辑状态
+		var state = "0";
+		var siteID = window.Index.siteID;
+		$.ajax({
+          url: 'http://<%- REQUEST_HOST %>/api/LoginAPI/UpdateSiteEditState',
+          async: false,
+          type: 'POST',
+          data: {
+          	siteId:siteID,
+          	siteEditState: state,	
+          },
+          success: function(data) {
+          	console.log("编辑状态保存成功");
+          },
+          error: function(error) {
+            console.log(error)
+          }
+        });
+} 
+</script>
+</body>
+</html>

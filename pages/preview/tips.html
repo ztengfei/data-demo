@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <title>安装提示</title>
+</head>
+<style type="text/css">
+	#tips{font-size:28px;margin: 50px 0 50px 50px;line-height:50px;}
+	.img{text-align: center;}
+	.img img{width: 30%;}
+</style>
+<body>
+    <div id="tips">
+    	首次使用放大镜需安装安全证书<br>
+    	1、点击安装
+    	2、点击"未知发布者"，点击"查看证书"，点击"安装证书"
+    	<div class="img">
+    		<img src="<%- staticBase %>/images/magnify/0.png" />
+    		<img src="<%- staticBase %>/images/magnify/1.png" />
+    		<img src="<%- staticBase %>/images/magnify/2.png" />
+    	</div>
+    	3、选择"本地计算机"，选择"将所有证书都放入下列存储"，点击"浏览"，选择"受信任的根证书颁发机构"
+    	<div style="text-align: center;">
+    		<img src="<%- staticBase %>/images/magnify/3.png" />
+    		<img src="<%- staticBase %>/images/magnify/4.png" />
+    		<img src="<%- staticBase %>/images/magnify/5.png" />
+    	</div>
+    	4、刷新页面
+    </div>
+    <object id="activex" classid="clsid:33E8240D-002D-4AC6-A34D-3882B15F869B" codebase="MagnifySetup.CAB#version=1,0,0" style="display: none;"></object>
+</body>
+</html>

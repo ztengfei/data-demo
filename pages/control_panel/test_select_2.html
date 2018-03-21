@@ -1,0 +1,147 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+<style>
+.long_txt_wrap{
+    width:300px;
+    height:100px;
+    position:relative;
+}
+.long_txt_parent,.long_txt_area,.long_txt_shadow{
+    padding:0;
+    margin:0;
+    width:100%;
+    height:100%;
+    line-height:20px;
+    border:none
+}
+.long_txt_parent{
+    position:relative;
+    border:1px solid #000
+}
+.long_txt_shadow{
+    position:absolute;
+    top:0;
+    left:0;
+    display:none;
+    background-color:#f00;
+}
+.long_txt_for_data{
+    width:80px;
+    height:20px;
+    line-height:20px;
+    border:1px solid #ccc;
+    background-color:#fff;
+    display:inline-block
+}
+.long_txt_insert,.long_txt_done,.long_txt_edit{
+    position:absolute;
+    top:0;
+    z-index:2
+}
+.long_txt_insert{
+    right:0;
+}
+.long_txt_done{
+    right:50px;
+}
+.long_txt_edit{
+    right:100px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="long_txt_wrap">
+    <div class="long_txt_insert">插入</div>
+    <div class="long_txt_done">完成</div>
+    <div class="long_txt_edit">编辑</div>
+    
+    <div class="long_txt_parent">
+        <div class="long_txt_shadow"></div>
+        <textarea class="long_txt_area"></textarea>
+    </div>
+</div>
+
+
+
+
+
+<p>下拉</p>
+<input type="checkbox" name="" value="1" class="select_all">全选
+<div>
+    <input type="checkbox" name="" value="1">name
+    <br>
+    
+    <input type="checkbox" name="" value="2">name
+    <br>
+</div>
+
+<script src="<%- LIB_JQUERY %>"></script>
+<script>
+(function($){
+    $.fn.extend({
+        "insert":function(value){
+            //默认参数
+            value = $.extend({
+                "text":"123"
+            },value);
+            
+            var dthis = $(this)[0]; //将jQuery对象转换为DOM元素
+            
+            if(document.selection){//IE
+                $(dthis).focus();        //输入元素textara获取焦点
+                var fus = document.selection.createRange();//获取光标位置
+                fus.text = value.text;    //在光标位置插入值
+                $(dthis).focus();    ///输入元素textara获取焦点
+            }
+            else if(dthis.selectionStart || dthis.selectionStart == '0'){//火狐下标准    
+                var start = dthis.selectionStart; 
+                var end = dthis.selectionEnd;
+                var top = dthis.scrollTop;
+                
+                //以下这句，应该是在焦点之前，和焦点之后的位置，中间插入我们传入的值
+                dthis.value = dthis.value.substring(0, start) + value.text + dthis.value.substring(end, dthis.value.length);
+            }
+            else{//在输入元素textara没有定位光标的情况
+                this.value += value.text;
+                this.focus();    
+            };
+            
+            return $(this);
+        }
+    })
+})(jQuery);
+
+$(function(){
+    $(".long_txt_insert").click(function(){
+        $(".long_txt_area").insert({"text":"{{数据块}}"});
+    });
+    
+    $(".long_txt_done").bind("click",function(){
+        var val = $(".long_txt_area").val().replace(/{{数据块}}/g,"<div class='long_txt_for_data'></div>");
+        
+        
+        $(".long_txt_shadow").html(val).show();
+    });
+    
+    $(".long_txt_edit").bind("click",function(){
+        $(".long_txt_shadow").hide();
+    });
+    
+    
+    $(".select_all").bind("click",function(){
+        if($(this).attr("checked") === "checked"){
+            $(this).next().find(":checkbox").attr("checked","checked");
+        }
+        else{
+            $(this).next().find(":checkbox").attr("checked",false);
+        }
+    });
+});
+</script>
+</body>
+</html>

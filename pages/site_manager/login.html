@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <title><%- HEAD_TITLE %></title>
+    <link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+    <link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/site_manager/login.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jqtree.css">
+</head>
+<body>
+<!--
+    sm = site_manager 缩写
+-->
+    <div id="header">
+        <div>
+            <img class="logo" src="<%- staticBase %>/images/logo.png" width="44" height="49" alt="LOGO">
+            <div class="banner">北京法院     大数据综合展现平台</div>
+        </div>
+    </div>
+    
+    <div id="sm-container">
+		<img class="logobg" src="<%- staticBase %>/images/loginbg.png" alt="">
+		<div class="login_list">
+			<div class="title-bt">
+				<div class="title-bt1">个人用户登陆</div>
+				<div class="title-bt2">管理员用户登陆</div>
+			</div>
+			<div class="login_cont">
+				<ul>
+					<li>
+						<select>
+						  <option value ="北京高级人民法院">北京高级人民法院</option>
+						  <option value ="saab">Saab</option>
+						  <option value="opel">Opel</option>
+						  <option value="audi">Audi</option>
+						</select>
+					</li>
+					<li><input type="text" class="user-name" value=""/></li>
+					<li><input type="password" class="user-pass" value=""/></li>
+				</ul>
+				<button class="login_sub">登陆</button>
+			</div>
+		</div>
+	</div>
+
+    <script src="<%- LIB_JQUERY %>"></script>
+    <script type="text/javascript" src="<%- LIB_TREE %>"></script>
+    <script src="<%- LIB_SEAJS %>"></script>
+</body>
+</html>
+<script>
+seajs.config({
+    base : "<%- staticBase %>",
+    alias : {
+        tool : "js/lib/tool",
+        utils: "js/lib/utils"
+    },
+    preload : ["tool"]
+})
+seajs.use(["js/site_manager/index"],function(SiteManager) {
+       // SiteManager.login();
+    }
+);
+</script>

@@ -1,0 +1,310 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>图标组件</title>
+<link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/common/pack.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/common/pack-chart.css" type="text/css" rel="stylesheet">
+<style>
+body{
+    background-color:#333;
+    padding:20px;
+}
+._pack_chart_pro{
+    top:0;
+    left:350px;
+    display:block
+}
+</style>
+</head>
+
+<body>
+
+<div id="chartContainer" style="width:300px;height:400px;background:#fff;"></div>
+
+<div class="_pack_chart_pro">
+    <form id="packChartProForm">
+    <div class="_pack_chart_pro_tab clearfix">
+        <div class="tab_item select" data-index="dimen">度量/维度</div>
+        <div class="tab_item" data-index="legend">图例</div>
+    </div>
+    <!-- 度量/维度 -->
+    <div class="_pack_chart_pro_panel _pack_chart_pro_panel_dimen">
+        <section>
+            <h3>度量</h3>
+            <div class="_pack_chart_pro_block ">
+                <dl class="clearfix axis_y axis_y_left dash_wrap_dl" data-pro="y-left">
+                    <dt style="" class="name_dt" data-name="y_left_name">左轴</dt>
+                    <dd style="" >
+                        <div class="dash_box">
+                            <!-- 拖拽后留下的标签 -->
+                            
+                            <input type="hidden" name="_pack_chart_pro_y_left_data_id" value/>
+                            <input type="hidden" name="_pack_chart_pro_y_left_data_id_desc" value/>
+                            
+                            <!-- <span class="line_box">
+                                <i class="line_box_desc y_left_desc">
+                                    123案件信息总数
+                            </i><em>+</em></span> -->
+                        </div>
+                        <div class="unit_box">
+                            <input type="hidden" name="_pack_chart_pro_y_left_unit_id" value/>
+                            <input type="hidden" name="_pack_chart_pro_y_left_unit_desc" value/>
+                            <span class="unit_label" data-edit-pro="axis_y_left_unit_id">单位</span>
+                            <select name="" id="unit_y_left" class="unit_select" disabled>
+                                <option value="">无</option>
+                                <!-- <option value="">万</option>
+                                <option value="">千万</option> -->
+                            </select>
+                            <span class="format_label" data-edit-pro="axis_y_left_format_id">格式</span>
+                            <ul class="format_item_list clearfix">
+                                <li class="format_item select" data-index="0">1,234</li>
+                                <li class="format_item" data-index="1">1,234.0</li>
+                                <li class="format_item" data-index="2">1,234.00</li>
+                            </ul>
+                            <input type="hidden" name="_pack_chart_pro_y_left_format_id" value="0"/>
+                            <input type="hidden" name="_pack_chart_pro_y_left_format_desc" value="1,234"/>
+                        </div>
+                        
+                    </dd>
+                </dl>
+                <dl class="clearfix axis_y axis_y_right dash_wrap_dl" data-pro="y-right">
+                    <dt style="" class="name_dt" data-name="y_right_name">右轴</dt>
+                    <dd style="" data-edit-pro="y_right">
+                        <div class="dash_box">
+                            <!-- 拖拽后留下的标签 -->
+                            <input type="hidden" name="_pack_chart_pro_y_right_data_id" value/>
+                            <input type="hidden" name="_pack_chart_pro_y_right_data_id_desc" value/>
+                            
+                            <!-- <span class="line_box"><i class="line_box_desc y_right_desc">123案件信息总数</i><em>+</em></span> -->
+                        </div>
+                        <div class="unit_box">
+                            <input type="hidden" name="_pack_chart_pro_y_right_unit_id" value/>
+                            <input type="hidden" name="_pack_chart_pro_y_right_unit_desc" value/>
+                            <span class="unit_label" data-edit-pro="axis_y_right_unit_id">单位</span>
+                            <select name="" id="unit_y_right" class="unit_select" disabled>
+                                <option value="">无</option>
+                                <!-- <option value="">万</option>
+                                <option value="">千万</option> -->
+                            </select>
+                            <span class="format_label">格式</span>
+                            <ul class="format_item_list clearfix">
+                                <li class="format_item select" data-index="0">1,234</li>
+                                <li class="format_item" data-index="1">1,234.0</li>
+                                <li class="format_item" data-index="2">1,234.00</li>
+                            </ul>
+                            <input type="hidden" name="_pack_chart_pro_y_right_format_id" value="0"/>
+                            <input type="hidden" name="_pack_chart_pro_y_right_format_desc" value="1,234"/>
+                        </div>
+                        
+                    </dd>
+                </dl>
+            </div>
+        </section>
+        <section>
+            <h3>维度</h3>
+            <div class="_pack_chart_pro_block mgr_b10">
+                <dl class="clearfix axis_x mgr_b10 dash_wrap_dl" data-pro="x">
+                    
+                    <dt style="" class="name_dt" data-name="x_name">横轴</dt>
+                    <dd style="" >
+                        <div class="dash_box">
+                            <!-- 有下拉框 -->
+                            <!-- 拖拽后的标签 -->
+                                <input type="hidden" name="_pack_chart_pro_x_parent_id" value/>
+                                <input type="hidden" name="_pack_chart_pro_x_parent_id_desc" value/>
+                                <input type="hidden" name="_pack_chart_pro_x_data_id" value/>
+                                <input type="hidden" name="_pack_chart_pro_x_data_id_desc" value/>
+                                <input type="hidden" name="_pack_chart_pro_x_son_id" value/>
+                                <input type="hidden" name="_pack_chart_pro_x_son_id_desc" value/>
+                                <span class="line_box has_dropdown" data-id="{id}">
+                                    <i class="line_box_desc legend_desc">{text}</i>
+                                    <span class="arraw"></span>
+                                    <em>+</em>
+                                    <div class="line_box_desc_multi_cnt" style="display:block">
+                                        <div class="line_box_toolbar">
+                                            <p>
+                                                <input type="text" class="line_box_toolbar_input" name="line_box_toolbar_input" placeholder="过滤"/>
+                                                <i class="line_box_toolbar_btn"><span></span></i>
+                                                <i class="line_box_toolbar_desc"><span></span></i>
+                                                <i class="line_box_toolbar_asc"><span></span></i>
+                                            </p>
+                                            <p>
+                                                <label for="" class="line_box_toolbar_cball_label">
+                                                    全选
+                                                    <input type="checkbox" name="line_box_toolbar_cb" />
+                                                </label>
+
+                                                <label for="" class="line_box_toolbar_topinput_label">
+                                                    
+                                                    <input type="text" name="line_box_toolbar_topinput" />TOP
+                                                </label>
+                                            </p>
+                                        </div>
+                                        <div class=" legend_desc" name="axis_x_select">
+                                            <p><input class="cb-item" type="checkbox" checked value="">{text}</p>
+                                            <p><input class="cb-item" type="checkbox">name</p>
+                                            <p><input class="cb-item" type="checkbox">name</p>
+                                            <p><input class="cb-item" type="checkbox">name</p>
+                                            <p><input class="cb-item" type="checkbox">name</p>
+                                        </div>
+                                        <div class="toolbox">
+                                            <span class="ok">提交筛选</span>
+                                            <span class="close">取消</span>
+                                        </div>
+                                    </div>
+                                    <em class="pack_del_em">+</em>
+                                </span>
+
+                        </div>
+                        
+                        
+                    </dd>
+                </dl>
+                <dl class="clearfix legend mgr_b10 dash_wrap_dl" data-pro="legend">
+                    
+                    
+                    
+                    <dt style="" class="name_dt" data-name="legend_name">图例</dt>
+                    <dd style="" >
+                        
+                        <div class="dash_box">
+                            <!-- 没有下拉 -->
+                            <input type="hidden" name="_pack_chart_pro_x_legend_id" value/>
+                            <input type="hidden" name="_pack_chart_pro_x_legend_id_desc" value/>
+                            <input type="hidden" name="_pack_chart_pro_x_legend_son_id" value/>
+                            <input type="hidden" name="_pack_chart_pro_x_legend_son_id_desc" value/>
+                            
+                            
+                            <!-- 拖拽后留下的标签 -->
+                            <!-- <span class="line_box ">
+                                <i class="line_box_desc legend_desc">性别</i><em>+</em>
+                            </span> -->
+                            
+                            
+                           
+                        </div>
+                        
+                        
+                    </dd>
+                </dl>
+                <!-- 图例位置 -->
+                <dl class="clearfix legend_pos">
+                    <input type="hidden" name="_pack_chart_pro_x_legend_pos_id" value/>
+                    <input type="hidden" name="_pack_chart_pro_x_legend_pos_id_desc" value/>
+                    <dt style="">&nbsp;</dt>
+                    <dd style="" >
+                        <ul class="legend_pos_list clearfix">
+                            <li class="pos_desc">图例位置</li>
+                            <li class="pos_item select" data-index="1">居左</li>
+                            <li class="pos_item" data-index="2">居右</li>
+                            <li class="pos_item" data-index="3">居上</li>
+                            <li class="pos_item" data-index="4">居下</li>
+                        </ul>
+                        
+                        
+                    </dd>
+                </dl>
+            </div>
+        </section>
+    </div>
+    <!-- 图例 -->
+    <div class="_pack_chart_pro_panel _pack_chart_pro_panel_legend" style="display:none;">
+        
+        <section style="border:none">
+
+            <div class="mgr_b20">
+                <!-- <span class="legend_color_label">全部</span>
+                <select class="legend_color_select" name="" id="legendColorAll">
+                    <option value="">黑色</option>
+                    <option value="">白色</option>
+                    <option value="">黄色</option>
+                    <option value="">橙色</option>
+                </select> -->
+                <ul class="legend_style_list clearfix">
+                    <!-- <li class="style_item select">方案1</li>
+                    <li class="style_item">方案1</li>
+                    <li class="style_item">方案1</li> -->
+                </ul>
+            </div>
+            <ul class="legend_color_list clearfix">
+                <!-- <li class="legend_color_item clearfix">
+                    <span class="legend_color_label">男</span>
+                    <span class="legend_color_picker" style="background:#ff0">&nbsp;</span>
+                    <span class="legent_color_arrow">
+                        <i class="icon"></i>
+                    </span>
+                </li>
+                <li class="legend_color_item clearfix">
+                    <span class="legend_color_label">女</span>
+                    <span class="legend_color_picker" style="background:#f0f">&nbsp;</span>
+                    <span class="legent_color_arrow">
+                        <i class="icon"></i>
+                    </span>
+                </li>
+                <li class="legend_color_item clearfix">
+                    <span class="legend_color_label">女</span>
+                    <span class="legend_color_picker" style="background:#f0f">&nbsp;</span>
+                    <span class="legent_color_arrow">
+                        <i class="icon"></i>
+                    </span>
+                </li> -->
+                
+            </ul>
+            
+        </section>
+    </div>
+    
+    <div class="_pack_chart_pro_tool clearfix">
+        <div class="btn submit">确定</div>
+        <div class="btn cancel">取消</div>
+    </div>
+</form>
+</div>
+
+<script src="<%- LIB_JQUERY %>"></script>
+<script src="<%- staticBase %>/js/lib/echarts.js"></script>
+<script src="<%- staticBase %>/js/lib/jquery.colorpicker.js"></script>
+<script>
+ $('._pack_chart_pro_tab').on( 'click', '.tab_item',function(e) {
+    var tabIndex = $(this).data('index');
+    var allPanel = $('._pack_chart_pro_panel').hide();
+    $('._pack_chart_pro_tab').find('.tab_item').removeClass('select');
+    $(this).addClass('select');
+
+    // allPanel.hide();
+    $('._pack_chart_pro_panel_' + tabIndex).show();
+
+
+ });
+ $('._pack_chart_pro_tool').find('.submit').on('click', function(e){
+    var myChart = echarts.init(document.getElementById('chartContainer'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: ''
+            },
+            tooltip: {},
+            legend: {
+                data:['销量']
+            },
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+ });
+</script>
+</body>
+</html>

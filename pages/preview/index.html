@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <title><%- HEAD_TITLE %></title>
+    <link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+    <link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/paging.css">
+    <link href="<%- staticBase %>/css/common/pack.css" type="text/css" rel="stylesheet">
+    <link href="<%- staticBase %>/css/common/pack-chart.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/preview/index.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/popup/popup.css">
+    <link href="<%- staticBase %>/css/control_panel/table_style.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jquery.mCustomScrollbar.css">
+	
+    <script type="text/javascript">
+        function test(){
+            var o = document.getElementById("activex");
+            //alert(o.HelloWorld());           
+			var f =  document.getElementById("fangda");
+			if(f.getAttribute('flag') == 1){
+				try{
+					o.startMagnify();
+					f.setAttribute('flag',0)
+					f.innerHTML = '取消放大镜';
+				}catch(e){
+					window.open('tips.html');
+				}
+				
+				
+			}else if(f.getAttribute('flag') == 0){
+				o.killMagnify();
+				f.setAttribute('flag',1)
+				f.innerHTML = '放大镜';
+			}
+        }
+		try{
+			window.onbeforeunload = function(){
+				var o = document.getElementById("activex");
+				o.killMagnify();
+			}
+		}catch(e){
+			console.log('fangda')
+		}
+
+    </script>
+</head>
+<body>    
+	<div id="wrapper">
+        <div id="header" style="display:none;">
+        	<img class="hbgimg" alt="hbg" style="display: none"/>
+            <div class="header-main">
+                
+                <div class="banner">
+                    <span class="header-name"><img class="logo" alt="logo" style="display: none"></span><span class="header-subname" style="display: none;"></span>
+                </div>
+            </div>
+        </div>
+        <div id="test">
+         <div id="nav"></div>
+        <div class="cntTem">
+	       
+	        <div id="sidebar">
+	        	<div class="page-query-box">
+	        		<div class="page-filt"><div>筛选</div></div>
+	        		<div id="page-query" class="hide">
+	        			
+	        		</div>
+	        	</div>
+	        	
+	        	
+	        	<!--<div id="page-sx">筛选<div id="page-query"></div></div>-->
+               
+	            <ul id="page-scroll-to"></ul>
+                <div class="page-magnify-box">
+                    <div class="page-magnifier temp5">
+                        <div onclick="test()" id="fangda">放大镜</div>
+                    </div>
+                </div>
+	        </div>
+	        <!-- hide   智慧云页面筛选图标  -->
+	        <div class="page-query-zhiyun hide" data-type="dimjbfy0_">	        	
+	        	<img class="shaixuan" src="<%- staticBase %>/images/preview/shaixuan.png"/>	        	
+        		<div class="page-query-zhiyun-box hide">
+        			<div class="filer_creat_box">
+        				<h3 class="left">请选择你要查询的单位</h3>
+        				<h3 class="right filer_creat">+</h3>
+        			</div>
+        			
+        			<div class="zhiyun-filter">
+        				
+        				
+        				
+        			</div>       			
+        		</div>
+        	</div>
+	        <div id="container">
+	            <div class="box"></div>
+	        </div>
+        </div>
+        </div>
+        <div id="footer" style="display: none;">
+			<img class="ftbgimg" alt="hbg" style="display: none"/>
+        </div>
+        <div id="page_data" style="display: none;"></div>
+    </div>
+
+    <script src="<%- LIB_JQUERY %>"></script>
+    <script src="<%- staticBase %>/js/common/login.js"></script>
+    <script src="<%- LIB_SEAJS %>"></script>
+    <script src="<%- LIB_SEAJS_TEXT %>"></script>
+    <script src="<%- LIB_SLIDER %>"></script>
+    <script src="<%- staticBase %>/js/lib/echarts.js"></script>
+    <script src="<%- staticBase %>/js/lib/jquery.dataTables.min.js"></script>
+    <script src="<%- staticBase %>/js/lib/jquery.mCustomScrollbar.js"></script>
+    <script src="<%- staticBase %>/js/lib/jquery.mousewheel.js"></script>
+    <script src="<%- staticBase %>/js/lib/query.js"></script>
+    <script src="<%- staticBase %>/js/lib/jsonExportExcel.js"></script>
+    <script src="<%- staticBase %>/js/lib/paging.js"></script>
+<script>
+seajs.config({
+    base : "<%- staticBase %>",
+    alias : {
+        tool : "js/lib/tool"
+    },
+    preload : ["tool"]
+})
+
+seajs.use(["js/preview/index","js/preview/ganged"],function(Preview,ganged) {
+		window.Preview = Preview;		
+        window.Preview.init();     
+        ganged.init();
+    }
+);
+</script>
+
+</body>
+</html>

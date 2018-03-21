@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no"/>
+    <title><%- HEAD_TITLE %></title>
+    <link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+    <link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/site_manager/index.css">
+    <link rel="stylesheet" type="text/css" href="<%- staticBase %>/css/common/jqtree.css">
+</head>
+<body>
+<!--
+    sm = site_manager 缩写
+-->
+    <div id="header">
+        <div>
+            <img class="logo" src="<%- staticBase %>/images/logo.png" width="44" height="49" alt="LOGO">
+            <div class="banner">北京法院 ｜ 大数据综合展现平台</div>
+        </div>
+        <ul class="nav">
+            <li><a href="/fy/pages/index/">首页</a></li>
+            <li class="hide"><a href="">基础数据库</a></li>
+            <li class="active"><a href="/fy/pages/site_manager/?userType=0">数据专题</a></li>
+            <li class="hide"><a href="">信息简报</a></li>
+        </ul>
+
+        <div id="user">
+            <span class="user-name">普通用户</span>
+            <span id="user-arrow"></span>
+            <ul id="user-menu">
+              <li id="logout">注销</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div id="sm-container">
+        <div id="sm-sidebar">
+            <!-- 管理员 -->
+            <div id="pack_detail_ul_by_map_tree"></div>
+            <!-- 普通用户 -->
+            <div id="sidebar_list_general_user" style="display: none;">
+                <div class="sm-parent only-show-current">
+                仅本院可见</div>
+                <div class="sm-parent sm-multi-parent active">多院可见
+                <label></label>
+                </div>
+                <ul class="sm-multi-list">
+                    <li><label><input type="checkbox" name="all" class="select-all" value="0">全选</label></li>
+                </ul>
+            </div>
+        </div>
+        <div id="sm-content">
+            <div id="icon-toggle"></div>
+            <div class="sm-create-area">
+                <div class="sm-content">
+                    <span id="btn-create-new">＋创建新专题</span>
+                    <div class="create-search">
+                        <span style="position: relative;">
+                            <input type="text" id="search-content" placeholder="请输入文本进行搜索" name="">
+                            <span class="search-icon"></span>
+                            <ul class="search-dropdown"></ul>
+                        </span>
+                        <label id="select-label">
+                            <span data-ordertype="0" class="active">时间</span><span  data-ordertype="1">名称</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="sm-content">
+                <div class="sm-tpl-show clear"></div>
+            </div>
+        </div>
+    </div>
+    <div id="sm-mask">
+      <div id="popup-settings">
+        <table>
+            <tr>
+                <td class="setting-label">路径保存</td>
+                <td><input type="" name=""></td>
+            </tr>
+            <tr>
+                <td>IP地址</td>
+                <td><input type="" name=""></td>
+            </tr>
+            <tr>
+                <td>端口号</td>
+                <td><input style="width: 170px;" type="" name=""></td>
+            </tr>
+            <tr>
+                <td style="padding-top: 25px;">高级选项</td>
+                <td></td>
+            </tr>
+        </table>
+        <div class="setting-box right-setting">
+            <div class="box-header">查看权限设置</div>
+        </div>
+        <div class="setting-box publish-pages">
+            <div class="box-header">发布页面选择</div>
+        </div>
+
+        <div class="subtitle">自定义变量配置</div>
+        <table id="dimension">
+            <tr>
+                <td style="width: 62px;">变量名</td>
+                <td><input type="" name=""></td>
+                <td style="width: 94px; padding-left: 25px;">所对应网站维度</td>
+                <td><input type="" name=""></td>
+                <td><div class="icon-add"></div></td>
+            </tr>
+        </table>
+
+        <div class="publish-submit">提交发布</div>
+      </div>
+    </div>
+
+
+
+<div id="deploy_wrap" class="hide"><!--发布站点区域-->
+    <div id="deploy_wrap_inner">
+        <div class="deploy_line">
+            <span>路径保存</span>
+            <input id="deploy_path" type="text">
+        </div>
+        <div class="deploy_line">
+            <span>IP地址</span>
+            <input id="deploy_ip" type="text">
+        </div>
+        <div class="deploy_line">
+            <span>端口号</span>
+            <input id="deploy_port" type="tel">
+        </div>
+        
+        <h3>高级选项</h3>
+        
+        <div class="rel">
+            <h4 id="deploy_view_h4">查看权限设置</h4>
+            <h4 id="deploy_page_h4">发布页面选择</h4>
+
+            <div id="deploy_view" class="left">
+                <div id="deploy_visual">
+                    <ul id="visual_ul">
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="deploy_page" class="right">
+                <div id="deploy_tree"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+        
+        <p class="c_txt">
+            <a id="deploy_submit" href="##">提交发布</a>
+        </p>
+    </div>
+    
+    <div id="deploy_wrap_bg">&nbsp;</div>
+</div>
+    <script src="<%- LIB_JQUERY %>"></script>
+    <script src="<%- staticBase %>/js/common/login.js"></script>
+    <script type="text/javascript" src="<%- LIB_TREE %>"></script>
+    <script src="<%- LIB_SEAJS %>"></script>
+<script>
+seajs.config({
+    base : "<%- staticBase %>",
+    alias : {
+        tool : "js/lib/tool",
+        utils: "js/lib/utils"
+    },
+    preload : ["tool"]
+})
+
+seajs.use(["js/site_manager/index"],function(SiteManager) {
+        SiteManager.init();
+    }
+);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>test</title>
+<link href="<%- BASE_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- WIDGETS_CSS %>" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/control_panel/index.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/common/pack.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/common/pack-chart.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/popup/popup.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/control_panel/welcome.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/control_panel/data_pack_son.css" type="text/css" rel="stylesheet">
+<link href="<%- staticBase %>/css/control_panel/table_style.css" type="text/css" rel="stylesheet">
+<style>
+
+</style>
+</head>
+
+<body>
+
+<!--
+1.默认图（如果有数据ID 则 渲染出table）
+2.点击弹出 属性框 进行拖拽数据库 和 css设置（如果有默认值 则赋上）
+3.保存
+4.根据ID 取出数据
+5.拿数据循环输出html
+6.执行table方法
+-->
+
+
+<div class="_pack_pro_edit_divs _pack_table_pro" style="">
+    <div class="drag_handle c_txt abs">点此拖动</div>
+    
+    <div class="_pack_edit_pro_inner_contents">
+        <div class="_pack_has_title_wrap">
+            <section>
+                <h3>度量</h3>
+                
+                <div class="_pack_text_pro_line">
+                    <h5>内容</h5>
+                    <div class="table_data_box">
+                        <!--span class="line_box" data-id="">
+                            <i class="line_box_desc">门头沟院</i>
+                            <em>+</em>
+                        </span-->
+                    </div>
+                </div>
+                <div class="_pack_text_pro_line" data-edit-pro="backgroundColor">
+                    <h5>背景色</h5>
+                    <div class="_pack_select_color _pack_pro_edit_input_by_backgroundColor" data-color="">&nbsp;</div>
+                </div>
+                
+                <div class="_pack_text_pro_line" data-edit-pro="color">
+                    <h5>文字颜色</h5>
+                    <div class="_pack_select_color _pack_pro_edit_input_by_color" data-color="">&nbsp;</div>
+                </div>
+                
+                <ul class="_pack_text_style_ul" data-pro="none">
+                    <li class="_pack_text_style_bold" data-pro="bold">加粗</li>
+                    <li class="_pack_text_style_italic" data-pro="italic">斜体</li>
+                    <li class="_pack_text_style_underline" data-pro="underline">下划线</li>
+                </ul>
+                <div class="clear"></div>
+            </section>
+        </div>
+        
+        <div class="_pack_has_title_wrap">
+            <section>
+                <h3>维度</h3>
+                
+                <div class="_pack_text_pro_line">
+                    <h5>行</h5>
+                    <div class="table_data_box">
+                        <!--span class="line_box" data-id="">
+                            <i class="line_box_desc">门头沟院</i>
+                            <em>+</em>
+                        </span-->
+                        
+                    </div>
+                </div>
+                <div class="_pack_text_pro_line" data-edit-pro="backgroundColor">
+                    <h5>背景色</h5>
+                    <div class="_pack_select_color _pack_pro_edit_input_by_backgroundColor" data-color="">&nbsp;</div>
+                </div>
+                
+                <div class="_pack_text_pro_line" data-edit-pro="color">
+                    <h5>文字颜色</h5>
+                    <div class="_pack_select_color _pack_pro_edit_input_by_color" data-color="">&nbsp;</div>
+                </div>
+                
+                <ul class="_pack_text_style_ul" data-pro="none">
+                    <li class="_pack_text_style_bold" data-pro="bold">加粗</li>
+                    <li class="_pack_text_style_italic" data-pro="italic">斜体</li>
+                    <li class="_pack_text_style_underline" data-pro="underline">下划线</li>
+                </ul>
+                <div class="clear"></div>
+                
+                <br>
+                <br>
+
+                <div class="_pack_text_pro_line">
+                    <h5>列</h5>
+                    <div class="table_data_box">
+                        <!--span class="line_box" data-id="">
+                            <i class="line_box_desc">门头沟院</i>
+                            <em>+</em>
+                        </span-->
+                    </div>
+                </div>
+                
+                <div class="_pack_text_pro_line" data-edit-pro="backgroundColor">
+                    <h5>背景色</h5>
+                    <div class="_pack_select_color _pack_pro_edit_input_by_backgroundColor" data-color="">&nbsp;</div>
+                </div>
+                
+                <div class="_pack_text_pro_line" data-edit-pro="color">
+                    <h5>文字颜色</h5>
+                    <div class="_pack_select_color _pack_pro_edit_input_by_color" data-color="">&nbsp;</div>
+                </div>
+                
+                <ul class="_pack_text_style_ul" data-pro="none">
+                    <li class="_pack_text_style_bold" data-pro="bold">加粗</li>
+                    <li class="_pack_text_style_italic" data-pro="italic">斜体</li>
+                    <li class="_pack_text_style_underline" data-pro="underline">下划线</li>
+                </ul>
+                <div class="clear"></div>
+            </section>
+        </div>
+
+        <div class="_pack_text_pro_line" data-edit-pro="borderWidth">
+            <h5>边框宽度</h5>
+            <div class="_pack_pro_edit_sub">-</div>
+            <input class="_pack_pro_edit_input _pack_pro_edit_input_by_borderWidth" value="0">
+            <div class="_pack_pro_edit_add">+</div>
+        </div>
+        
+        <div class="_pack_text_pro_line" data-edit-pro="borderColor">
+            <h5>边框颜色</h5>
+            <div class="_pack_select_color _pack_pro_edit_input_by_borderColor" data-color="">&nbsp;</div>
+        </div>
+        
+        <div class="_pack_text_pro_line" data-edit-pro="borderStyle">
+            <h5>边框样式</h5>
+            <select class="_pack_drop_select _pack_pro_edit_input_by_borderStyle">
+                <option selected value="0">无</option>
+                <option value="1">直线</option>
+                <option value="2">虚线</option>
+            </select>
+        </div>
+        
+        <div class="_pack_table_btn_wrap c_txt">
+            <a href="" class="inline_b _pack_table_btn_submit">确认</a>
+            <a href="" class="inline_b _pack_table_btn_cancel">取消</a>
+        </div>
+    </div>
+</div>
+
+<table id="my_table" class="display" cellspacing="0" width="100%">
+    <thead class="hide">
+        <tr>
+            <th>n</th>
+            <th>a</th>
+        </tr>
+    </thead>
+
+    <!--tbody>
+        <tr>
+            <td>Finn Camacho</td>
+            <td>47</td>
+            <td>2009/07/07</td>
+            <td>$87,500</td>
+        </tr>
+        <tr>
+            <td>Serge Baldwin</td>
+            <td>64</td>
+            <td>2012/04/09</td>
+            <td>$138,575</td>
+        </tr>
+        <tr>
+            <td>Zenaida Frank</td>
+            <td>63</td>
+            <td>2010/01/04</td>
+            <td>$125,250</td>
+        </tr>
+    </tbody-->
+</table>
+<script src="<%- LIB_JQUERY %>"></script>
+<script src="<%- staticBase %>/js/lib/jquery.dataTables.min.js"></script>
+<script>
+    $('#my_table').dataTable({
+        searching: false,//是否开启搜索
+        ordering: false,//是否开启排序
+        paging : false,//是否开启分页
+        //scrollY : 10//Y轴最大高度
+        "data" : [
+            ["a","1"],
+            ["b","2"]
+        ]
+    });
+</script>
+</body>
+</html>
