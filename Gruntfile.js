@@ -1,6 +1,6 @@
-module.exports = function(grunt) {
+﻿module.exports = function(grunt) {
     require('time-grunt')(grunt);
-
+	// 增加项目相关的注释，修改项目文件
     var myDate = new Date(),
 		config = {
         product: global.productName, //项目名，用于md5后的资源 如<%- staticBase %>/xx/a.js替换成<%- staticBase %>/xx/a.131.js
